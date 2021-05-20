@@ -1240,7 +1240,7 @@ MonoBehaviour:
     type: 3}
   positionHead: {fileID: 4136819352547259405}
   deadHead: 0
-  health: 10
+  health: 50
 --- !u!1 &4136819353270395502
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class CrystalSmash : MonoBehaviour
     private int _Stomp = 0;
     public GameObject Crystals;
     public GameObject pointCrystal;
+    public GameObject ShatteredCrystal;
 
     void Start()
     {
@@ -29,8 +30,9 @@ public class CrystalSmash : MonoBehaviour
             StartCoroutine(Die());
             animator.SetTrigger(_Stomp);
             //animator.Play("CrystalStomp");
-            Instantiate(Crystals, pointCrystal.transform.position, pointCrystal.transform.rotation);
-           
+            GameObject clone = GameObject.Instantiate(Crystals, pointCrystal.transform.position, pointCrystal.transform.rotation);
+            Destroy(clone,1.0f);
+            //StartCoroutine(Shatter(clone));
         }
        
     }
@@ -69,5 +71,12 @@ public class CrystalSmash : MonoBehaviour
         yield return new WaitForSeconds(1f);
         smash.SetActive(false);
     }
-    
+
+    //IEnumerator Shatter(GameObject clone2)
+    //{
+
+    //    yield return new WaitForSeconds(0.9f);
+    //    GameObject clone = GameObject.Instantiate(ShatteredCrystal, clone2.transform.position, clone2.transform.rotation);
+    //    Destroy(clone, 2.0f);
+    //}
 }

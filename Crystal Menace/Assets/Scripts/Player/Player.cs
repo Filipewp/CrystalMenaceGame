@@ -26,6 +26,13 @@ public class Player : MonoBehaviour
    
     Vector2 input;
 
+    public GameObject Weapon1;
+    public GameObject Weapon2;
+    public GameObject Weapon3;
+    bool change1 = true;
+    bool change2 = true;
+    bool change3 = true;
+
     //bomb effect
 
     public GameObject bomb;
@@ -137,7 +144,31 @@ public class Player : MonoBehaviour
            
 
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && change1 == true)
+        {
+
+            Weapon1.SetActive(true);
+            Weapon2.SetActive(false);
+            Weapon3.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2) && change2 == true)
+        {
+
+            Weapon1.SetActive(false);
+            Weapon2.SetActive(true);
+            Weapon3.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3) && change3 == true)
+        {
+
+            Weapon1.SetActive(false);
+            Weapon2.SetActive(false);
+            Weapon3.SetActive(true);
+        }
+
 
     }
     public void DamagePlayer(float damage)
