@@ -20,7 +20,7 @@ public class OnHeadShoot : MonoBehaviour
     Collider coll;
     public GameObject positionHead;
     public bool deadHead = false;
-
+    public AudioSource explosionSound;
 
     //public Canvas canv;
 
@@ -42,6 +42,7 @@ public class OnHeadShoot : MonoBehaviour
             //parent.enabled = false;
             GameObject clone = GameObject.Instantiate(replacement, positionHead.transform.position, positionHead.transform.rotation);
             coll.enabled = false;
+            explosionSound.Play();
             Detonate();
             Destroy(partToVanish);
             deadHead = true;

@@ -38,6 +38,8 @@ public class Enemy : MonoBehaviour
     private OnHeadShoot offLegL;
     private OnHeadShoot offLegR;
 
+   
+
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -173,6 +175,7 @@ public class Enemy : MonoBehaviour
     }
     void Die()
     {
+        
         agent.enabled = false;
         animator.enabled = false;
         Destroy(gameObject, 5);

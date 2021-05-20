@@ -32,7 +32,8 @@ public class Player : MonoBehaviour
     bool change1 = true;
     bool change2 = true;
     bool change3 = true;
-
+    public AudioSource audSource2;
+    public AudioSource death;
     //bomb effect
 
     public GameObject bomb;
@@ -91,6 +92,16 @@ public class Player : MonoBehaviour
         if (currentHealth < 0)
         {
             currentHealth = 0;
+        }
+
+        if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
+        {
+
+            audSource2.Play();
+        }
+        else if (!Input.GetButton("Horizontal") && !Input.GetButton("Vertical") && audSource2.isPlaying)
+        {
+            audSource2.Stop();
         }
 
         float horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
@@ -193,6 +204,7 @@ public class Player : MonoBehaviour
             body.SetActive(false);
             shattered.SetActive(true);
             Detonate();
+            death.Play();
             Destroy(shattered, 5.0f);
             
             Debug.Log("Player Is Dead");

@@ -65,6 +65,8 @@ public class GunSystem : MonoBehaviour
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
     int bulletsLeft, bulletsShot;
+    public AudioSource shootSound;
+    public AudioSource reloadSound;
 
     //bools 
     bool shooting, readyToShoot, reloading;
@@ -91,7 +93,7 @@ public class GunSystem : MonoBehaviour
         MyInput();
 
         //SetText
-        //text.SetText(bulletsLeft + " / " + magazineSize);
+        text.SetText(bulletsLeft + " / " + magazineSize);
     }
     private void MyInput()
     {
@@ -112,6 +114,7 @@ public class GunSystem : MonoBehaviour
     private void Shoot()
     {
         readyToShoot = false;
+        shootSound.Play();
         muzzleFlash.Play();
         //Spread
         float x = Random.Range(-spread, spread);
@@ -175,6 +178,7 @@ public class GunSystem : MonoBehaviour
     private void Reload()
     {
         reloading = true;
+        reloadSound.Play();
         Invoke("ReloadFinished", reloadTime);
     }
     private void ReloadFinished()

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
+
 
 public class CrystalBullet : MonoBehaviour
 {
@@ -14,6 +16,10 @@ public class CrystalBullet : MonoBehaviour
     public Animator animator;
     private int _launch = 0;
 
+    public float cooldownTime = 2;
+    private float nextFireTime = 0;
+    public AudioSource BulletSound;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -21,11 +27,17 @@ public class CrystalBullet : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) )
+        if (Time.time > nextFireTime)
         {
-            crystal.SetActive(true);
-            StartCoroutine(GoCrystal());
-            animator.SetTrigger(_launch);
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                crystal.SetActive(true);
+                StartCoroutine(GoCrystal());
+                animator.SetTrigger(_launch);
+                nextFireTime = Time.time + cooldownTime;
+                BulletSound.Play();
+
+            }
         }
     }
     void Shoot()

@@ -13,6 +13,10 @@ public class CrystalSmash : MonoBehaviour
     public GameObject Crystals;
     public GameObject pointCrystal;
     public GameObject ShatteredCrystal;
+    public AudioSource StompSound;
+
+    public float cooldownTime = 2;
+    private float nextFireTime = 0;
 
     void Start()
     {
@@ -23,16 +27,21 @@ public class CrystalSmash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && (Mutation == true))
+        if (Time.time > nextFireTime)
         {
-            stomp = true;
-            smash.SetActive(true);
-            StartCoroutine(Die());
-            animator.SetTrigger(_Stomp);
-            //animator.Play("CrystalStomp");
-            GameObject clone = GameObject.Instantiate(Crystals, pointCrystal.transform.position, pointCrystal.transform.rotation);
-            Destroy(clone,1.0f);
-            //StartCoroutine(Shatter(clone));
+            if (Input.GetKeyDown(KeyCode.E) && (Mutation == true))
+            {
+                stomp = true;
+                smash.SetActive(true);
+                StartCoroutine(Die());
+                animator.SetTrigger(_Stomp);
+                StompSound.Play();
+                //animator.Play("CrystalStomp");
+                GameObject clone = GameObject.Instantiate(Crystals, pointCrystal.transform.position, pointCrystal.transform.rotation);
+                Destroy(clone, 1.0f);
+                //StartCoroutine(Shatter(clone));
+                nextFireTime = Time.time + cooldownTime;
+            }
         }
        
     }
@@ -48,11 +57,11 @@ public class CrystalSmash : MonoBehaviour
             //    enemy.TakeDamage(damage);
             //}
 
-            ShootingEnemy enemyShoot = other.transform.GetComponent<ShootingEnemy>();
-            if (enemyShoot != null)
-            {
-                enemyShoot.TakeDamage(damage);
-            }
+            //ShootingEnemy enemyShoot = other.transform.GetComponent<ShootingEnemy>();
+            //if (enemyShoot != null)
+            //{
+            //    enemyShoot.TakeDamage(damage);
+            //}
 
             OnHeadShoot headShoot = other.transform.GetComponent<OnHeadShoot>();
 
@@ -68,7 +77,7 @@ public class CrystalSmash : MonoBehaviour
     IEnumerator Die()
     {
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         smash.SetActive(false);
     }
 

@@ -41,7 +41,7 @@ public class ShootingEnemy : MonoBehaviour
     private OnHeadShoot offArmR;
     private OnHeadShoot offLegL;
     private OnHeadShoot offLegR;
-
+    public AudioSource shootSound;
 
     void Start()
     {
@@ -54,6 +54,7 @@ public class ShootingEnemy : MonoBehaviour
         offArmR = armRShootDead.GetComponent<OnHeadShoot>();
         offLegL = legLShootDead.GetComponent<OnHeadShoot>();
         offLegR = legRShootDead.GetComponent<OnHeadShoot>();
+       
     }
 
     void Update()
@@ -143,6 +144,7 @@ public class ShootingEnemy : MonoBehaviour
     {
         animator.SetTrigger("Attack");
         Instantiate(projectile, shootPoint.position, shootPoint.rotation);
+        shootSound.Play();
     }
     void DisableEnemy()
     {
@@ -186,7 +188,7 @@ public class ShootingEnemy : MonoBehaviour
 
     void Die()
     {
-
+        
         agent.enabled = false;
         animator.enabled = false;
         
