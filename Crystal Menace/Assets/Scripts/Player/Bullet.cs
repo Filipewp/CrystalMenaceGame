@@ -6,11 +6,13 @@ public class Bullet : MonoBehaviour
 {
     Rigidbody rb;
     public float force = 50000;
+    GameObject fpsCam;
 
     void Awake()
     {
+        fpsCam = GameObject.FindGameObjectWithTag("MainCamera");
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * force);
+        rb.AddForce(fpsCam.transform.forward * force);
         StartCoroutine(Die());
 
     }

@@ -11,6 +11,12 @@ public class ShootingEnemy : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
     bool isDead = false;
+    bool isDead1 = false;
+    bool isDead2 = false;
+    bool isDead3 = false;
+    bool isDead4 = false;
+    bool isDead5 = false;
+    bool totalDeath = false;
     public bool canAttack = true;
     [SerializeField]
     float chaseDistance = 2f;
@@ -23,30 +29,109 @@ public class ShootingEnemy : MonoBehaviour
 
     float fireRate = 0.5f;
 
+    public GameObject headShootDead;
+    public GameObject torsoShootDead;
+    public GameObject armLShootDead;
+    public GameObject armRShootDead;
+    public GameObject legLShootDead;
+    public GameObject legRShootDead;
+    private OnHeadShoot offPath;
+    private OnHeadShoot offTorso;
+    private OnHeadShoot offArmL;
+    private OnHeadShoot offArmR;
+    private OnHeadShoot offLegL;
+    private OnHeadShoot offLegR;
+
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        offPath = headShootDead.GetComponent<OnHeadShoot>();
+        offTorso = torsoShootDead.GetComponent<OnHeadShoot>();
+        offArmL = armLShootDead.GetComponent<OnHeadShoot>();
+        offArmR = armRShootDead.GetComponent<OnHeadShoot>();
+        offLegL = legLShootDead.GetComponent<OnHeadShoot>();
+        offLegR = legRShootDead.GetComponent<OnHeadShoot>();
     }
 
     void Update()
     {
-       
+        isDead = offPath.deadHead;
+        isDead1 = offTorso.deadHead;
+        isDead2 = offArmL.deadHead;
+        isDead3 = offArmR.deadHead;
+        isDead4 = offLegL.deadHead;
+        isDead5 = offLegR.deadHead;
+        if (isDead == true && isDead2 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead == true && isDead3 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead == true && isDead4 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead == true && isDead5 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead1 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead2 == true && isDead3 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead2 == true && isDead4 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead2 == true && isDead5 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead3 == true && isDead4 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead3 == true && isDead5 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead4 == true && isDead5 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
 
         float distance = Vector3.Distance(transform.position, target.position);
 
-        if (distance > chaseDistance && !isDead)
+        if (distance > chaseDistance && totalDeath == false)
         {
             ChasePlayer();
 
         }
-        else if (canAttack && !Player.singleton.isDead && !isDead)
+        else if (canAttack && !Player.singleton.isDead && totalDeath == false)
         {
             AttackPlayer();
         }
-        else if (!canAttack && !Player.singleton.isDead)
+        else if (!canAttack && !Player.singleton.isDead || totalDeath == true)
         {
             DisableEnemy();
         }
@@ -101,10 +186,10 @@ public class ShootingEnemy : MonoBehaviour
 
     void Die()
     {
-       
 
+        agent.enabled = false;
         animator.enabled = false;
         
-        Destroy(gameObject, 10);
+        Destroy(gameObject, 5);
     }
 }

@@ -11,14 +11,21 @@ public class CrystalBullet : MonoBehaviour
     public GameObject bulletCrystal;
     public Transform shootPoint;
     public GameObject crystal;
+    public Animator animator;
+    private int _launch = 0;
 
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        _launch = Animator.StringToHash("Launch");
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q) )
         {
             crystal.SetActive(true);
             StartCoroutine(GoCrystal());
-          
+            animator.SetTrigger(_launch);
         }
     }
     void Shoot()
@@ -38,12 +45,12 @@ public class CrystalBullet : MonoBehaviour
             for (int i = 0; i < hits.Length; i++)
             {
                  RaycastHit hitting = hits[i];
-                Enemy enemy = hitting.transform.GetComponent<Enemy>();
+                //Enemy enemy = hitting.transform.GetComponent<Enemy>();
 
-                if (enemy != null)
-                {
-                    enemy.TakeDamage(CalculateDamage(hitting.collider.gameObject));
-                }
+                //if (enemy != null)
+                //{
+                //    enemy.TakeDamage(CalculateDamage(hitting.collider.gameObject));
+                //}
                 ShootingEnemy enemyShoot = hitting.transform.GetComponent<ShootingEnemy>();
 
                 if (enemyShoot != null)

@@ -5,24 +5,33 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     
-    public Camera ThirdPersonCam;
-    public Camera AimCam;
+    public GameObject ThirdPersonCam;
+    public GameObject AimCam;
     public static Player singleton;
     public float currentHealth;
-    public float maxHealth = 100f;
+    public float maxHealth = 100;
     public float speed = 10f;
     public Rigidbody rb;
     public bool isDead = false;
     public Animator animator;
+    public HealthBar healthBar;
     public bool Mutation = false;
     public GameObject smash;
     public float damage = 50;
-
+    public bool zoom = false;
+    private int _stomp = 0;
+    public GameObject shattered;
+    public GameObject body;
     public bool OnGround;
    
     Vector2 input;
 
+    //bomb effect
 
+    public GameObject bomb;
+    public float power = 10.0f;
+    public float radius = 5.0f;
+    public float upForce = 1.0f;
     private void Awake()
     {
         singleton = this;
@@ -32,9 +41,13 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        _stomp = Animator.StringToHash("Stomp");
         currentHealth = maxHealth;
-       
-       
+        healthBar.SetHealth(maxHealth);
+        body.SetActive(true);
+        shattered.SetActive(false);
+
+
     }
 
     private void FixedUpdate()
@@ -77,31 +90,35 @@ public class Player : MonoBehaviour
         float vertical = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
        
-        ThirdPersonCam.GetComponent<Camera>().enabled = true;
-        AimCam.GetComponent<Camera>().enabled = false;
+        //ThirdPersonCam.SetActive( true);
+        //AimCam.SetActive(false);
 
         transform.Translate(horizontal, 0, vertical);
 
         if (Input.GetMouseButton(1) && (Mutation == false))
         {
             animator.Play("AimLocomotion");
-            ThirdPersonCam.GetComponent<Camera>().enabled = false;
-            AimCam.GetComponent<Camera>().enabled = true;
+           
+           // ThirdPersonCam.SetActive(false);
+            //AimCam.SetActive(true);
         }
-        else if (Mutation == false)
+        else if (Mutation == false )
         {
             animator.Play("Locomotion");
+           // Camanimator.Play("CamZoomOut");
         }
 
-        if (Input.GetMouseButton(1) && (Mutation == true))
+        if (Input.GetMouseButton(1) && (Mutation == true) )
         {
             animator.Play("SymbAimLocomotion");
-            ThirdPersonCam.GetComponent<Camera>().enabled = false;
-            AimCam.GetComponent<Camera>().enabled = true;
+           
+            //ThirdPersonCam.SetActive(false);
+            //AimCam.SetActive(true);
         }
-        else if (Mutation == true)
+        else if (Mutation == true )
         {
             animator.Play("SymbLocomotion");
+            //Camanimator.Play("CamZoomOut");
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -111,13 +128,16 @@ public class Player : MonoBehaviour
             OnGround = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && (Mutation == true))
+        if (Input.GetKeyDown(KeyCode.E) && (Mutation == true) && (isDead = false))
         {
-            Stomp();
+           
             smash.SetActive(true);
             StartCoroutine(Die());
-            
+            animator.SetTrigger(_stomp);
+           
+
         }
+        
 
     }
     public void DamagePlayer(float damage)
@@ -125,6 +145,7 @@ public class Player : MonoBehaviour
         if (currentHealth > 0)
         {
             currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
         }
         else
         {
@@ -133,8 +154,16 @@ public class Player : MonoBehaviour
 
         void Dead()
         {
+            speed = 0;
             currentHealth = 0;
             isDead = true;
+            GetComponent<CrystalBullet>().enabled = false;
+            GetComponent<CrystalSmash>().enabled = false;
+            body.SetActive(false);
+            shattered.SetActive(true);
+            Detonate();
+            Destroy(shattered, 5.0f);
+            
             Debug.Log("Player Is Dead");
         }
     }
@@ -143,11 +172,11 @@ public class Player : MonoBehaviour
         if (other.tag == "Enemy")
         {
 
-            Enemy enemy = other.transform.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-            }
+            //Enemy enemy = other.transform.GetComponent<Enemy>();
+            //if (enemy != null)
+            //{
+            //    enemy.TakeDamage(damage);
+            //}
 
             ShootingEnemy enemyShoot = other.transform.GetComponent<ShootingEnemy>();
             if (enemyShoot != null)
@@ -168,6 +197,19 @@ public class Player : MonoBehaviour
         smash.SetActive(false);
     }
 
+    void Detonate()
+    {
+        Vector3 explosionPosition = bomb.transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(power, explosionPosition, radius, upForce, ForceMode.Impulse);
+            }
+        }
+    }
     void Stomp()
     {
         animator.SetTrigger("Stomp");

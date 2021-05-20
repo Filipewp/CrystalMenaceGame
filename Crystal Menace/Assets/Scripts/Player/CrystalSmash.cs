@@ -8,10 +8,15 @@ public class CrystalSmash : MonoBehaviour
     public float damage = 50;
     public Animator animator;
     public bool Mutation = false;
+    public bool stomp = false;
+    private int _Stomp = 0;
+    public GameObject Crystals;
+    public GameObject pointCrystal;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        _Stomp = Animator.StringToHash("Stomp");
     }
 
     // Update is called once per frame
@@ -19,11 +24,15 @@ public class CrystalSmash : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && (Mutation == true))
         {
-
+            stomp = true;
             smash.SetActive(true);
             StartCoroutine(Die());
+            animator.SetTrigger(_Stomp);
             //animator.Play("CrystalStomp");
+            Instantiate(Crystals, pointCrystal.transform.position, pointCrystal.transform.rotation);
+           
         }
+       
     }
 
     void OnTriggerEnter(Collider other)
@@ -31,11 +40,11 @@ public class CrystalSmash : MonoBehaviour
         if (other.tag =="Enemy")
         {
 
-            Enemy enemy = other.transform.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-            }
+            //Enemy enemy = other.transform.GetComponent<Enemy>();
+            //if (enemy != null)
+            //{
+            //    enemy.TakeDamage(damage);
+            //}
 
             ShootingEnemy enemyShoot = other.transform.GetComponent<ShootingEnemy>();
             if (enemyShoot != null)
@@ -57,7 +66,7 @@ public class CrystalSmash : MonoBehaviour
     IEnumerator Die()
     {
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         smash.SetActive(false);
     }
     

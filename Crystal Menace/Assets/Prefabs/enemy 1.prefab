@@ -208,7 +208,7 @@ MonoBehaviour:
   canAttack: 1
   chaseDistance: 3.5
   turnSpeed: 5
-  damage: 35
+  damage: 10
   attackTime: 2
   animator: {fileID: 4136819352857242881}
   headShootDead: {fileID: 4136819353231682028}

@@ -39,7 +39,7 @@ public class OnHeadShoot : MonoBehaviour
         health -= amount;
         if (health <= 0f)
         {
-            parent.enabled = false;
+            //parent.enabled = false;
             GameObject clone = GameObject.Instantiate(replacement, positionHead.transform.position, positionHead.transform.rotation);
             coll.enabled = false;
             Detonate();

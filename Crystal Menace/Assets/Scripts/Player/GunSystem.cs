@@ -5,52 +5,181 @@ using TMPro;
 
 public class GunSystem : MonoBehaviour
 {
-    
-    public float damage = 10f;
-    public float range = 100f;
-    public float fireRate = 15f;
-    private float nextTimeToFire = 0f;
-    
-    public Camera fpsCam;
 
-    void Update()
+    //    public float damage = 10f;
+    //    public float range = 100f;
+    //    public float fireRate = 15f;
+    //    private float nextTimeToFire = 0f;
+
+
+    //    public ParticleSystem muzzleFlash;
+
+    //    public Camera fpsCam;
+
+    //    void Update()
+    //    {
+    //        if(Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+    //        {
+    //            nextTimeToFire = Time.time + 1f / fireRate;
+    //            Shoot();
+    //        }
+    //    }
+
+    //   void Shoot()
+    //    {
+    //        muzzleFlash.Play();
+    //        RaycastHit hit;
+    //        if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+    //        {
+    //            Debug.Log(hit.transform.name);
+
+    //            Enemy enemy = hit.transform.GetComponent<Enemy>();
+
+
+    //            if (enemy != null)
+    //            {
+    //                enemy.TakeDamage(damage);
+
+    //            }
+
+    //            ShootingEnemy shootingenemy = hit.transform.GetComponent<ShootingEnemy>();
+
+    //            if (shootingenemy != null)
+    //            {
+    //                shootingenemy.TakeDamage(damage);
+    //            }
+
+    //            OnHeadShoot headShoot = hit.transform.GetComponent<OnHeadShoot>();
+
+    //            if (headShoot != null)
+    //            {
+    //                headShoot.Vanish(damage);
+    //            }
+    //        }
+    //    }
+    //}
+
+    //Gun stats
+    public int damage;
+    public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
+    public int magazineSize, bulletsPerTap;
+    public bool allowButtonHold;
+    int bulletsLeft, bulletsShot;
+
+    //bools 
+    bool shooting, readyToShoot, reloading;
+
+    //Reference
+    public Camera fpsCam;
+    public Transform attackPoint;
+    public RaycastHit rayHit;
+    public LayerMask whatIsEnemy;
+
+    //Graphics
+    public ParticleSystem muzzleFlash; 
+    public CameraShake camShake;
+    public float camShakeMagnitude, camShakeDuration;
+    public TextMeshProUGUI text;
+
+    private void Awake()
     {
-        if(Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+        bulletsLeft = magazineSize;
+        readyToShoot = true;
+    }
+    private void Update()
+    {
+        MyInput();
+
+        //SetText
+        //text.SetText(bulletsLeft + " / " + magazineSize);
+    }
+    private void MyInput()
+    {
+        if (Input.GetKey(KeyCode.Mouse1))
+            {
+            if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+            else shooting = Input.GetKeyDown(KeyCode.Mouse0);
+        }
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
+
+        //Shoot
+        if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
         {
-            nextTimeToFire = Time.time + 1f / fireRate;
+            bulletsShot = bulletsPerTap;
             Shoot();
         }
     }
-
-   void Shoot()
+    private void Shoot()
     {
-        RaycastHit hit;
-        if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        readyToShoot = false;
+        muzzleFlash.Play();
+        //Spread
+        float x = Random.Range(-spread, spread);
+        float y = Random.Range(-spread, spread);
+
+        //Calculate Direction with Spread
+        Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
+
+        //RayCast
+        if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
-            Debug.Log(hit.transform.name);
+            Debug.Log(rayHit.collider.name);
 
-            Enemy enemy = hit.transform.GetComponent<Enemy>();
-           
+            //Enemy enemy = rayHit.transform.GetComponent<Enemy>();
 
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-               
-            }
 
-            ShootingEnemy shootingenemy = hit.transform.GetComponent<ShootingEnemy>();
+            //if (enemy != null)
+            //{
+            //    enemy.TakeDamage(damage);
+
+            //}
+
+            ShootingEnemy shootingenemy = rayHit.transform.GetComponent<ShootingEnemy>();
 
             if (shootingenemy != null)
             {
                 shootingenemy.TakeDamage(damage);
             }
 
-            OnHeadShoot headShoot = hit.transform.GetComponent<OnHeadShoot>();
+            OnHeadShoot headShoot = rayHit.transform.GetComponent<OnHeadShoot>();
 
             if (headShoot != null)
             {
                 headShoot.Vanish(damage);
             }
+
+           
+
         }
+
+        //ShakeCamera
+        StartCoroutine(camShake.Shake(camShakeDuration, camShakeMagnitude));
+        
+
+        //Graphics
+        //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
+       
+
+        bulletsLeft--;
+        bulletsShot--;
+
+        Invoke("ResetShot", timeBetweenShooting);
+
+        if (bulletsShot > 0 && bulletsLeft > 0)
+            Invoke("Shoot", timeBetweenShots);
+    }
+    private void ResetShot()
+    {
+        readyToShoot = true;
+    }
+    private void Reload()
+    {
+        reloading = true;
+        Invoke("ReloadFinished", reloadTime);
+    }
+    private void ReloadFinished()
+    {
+        bulletsLeft = magazineSize;
+        reloading = false;
     }
 }

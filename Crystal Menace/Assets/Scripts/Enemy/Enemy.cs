@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     bool isDead3 = false;
     bool isDead4 = false;
     bool isDead5 = false;
+    bool totalDeath = false;
     public bool canAttack = true;
     [SerializeField]
     float chaseDistance = 20f;
@@ -48,6 +49,7 @@ public class Enemy : MonoBehaviour
         offArmR = armRShootDead.GetComponent<OnHeadShoot>();
         offLegL = legLShootDead.GetComponent<OnHeadShoot>();
         offLegR = legRShootDead.GetComponent<OnHeadShoot>();
+       
     }
 
     void Update()
@@ -59,53 +61,85 @@ public class Enemy : MonoBehaviour
         isDead3 = offArmR.deadHead;
         isDead4 = offLegL.deadHead;
         isDead5 = offLegR.deadHead;
-        if (isDead==true)
+        if (isDead==true && isDead2 == true)
         {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead == true && isDead3 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead == true && isDead4 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead == true && isDead5 == true)
+        {
+            totalDeath = true;
             Die();
         }
         if (isDead1 == true)
         {
+            totalDeath = true;
             Die();
         }
-        if (isDead2 == true)
+        if (isDead2 == true && isDead3 == true)
         {
+            totalDeath = true;
             Die();
         }
-        if (isDead3 == true)
+        if (isDead2 == true && isDead4 == true)
         {
+            totalDeath = true;
             Die();
         }
-        if (isDead4 == true)
+        if (isDead2 == true && isDead5 == true)
         {
+            totalDeath = true;
             Die();
         }
-        if (isDead5 == true)
+        if (isDead3 == true && isDead4 == true)
         {
+            totalDeath = true;
             Die();
         }
-        if (distance > chaseDistance && !isDead)
+        if (isDead3 == true && isDead5 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+        if (isDead4 == true && isDead5 == true)
+        {
+            totalDeath = true;
+            Die();
+        }
+       
+        if (distance > chaseDistance && totalDeath == false)
         {
             ChasePlayer();
             
         }
-        else if(canAttack && !Player.singleton.isDead && !isDead)
+        else if(canAttack && !Player.singleton.isDead==true && totalDeath == false)
         {
             AttackPlayer();
         }
-        else if(!canAttack && !Player.singleton.isDead)
+        else if(!canAttack && !Player.singleton.isDead == true || totalDeath == true)
         {
             DisableEnemy();
         }
     }
-    public void TakeDamage(float amount)
-    {
-        health -= amount;
-        if(health <= 0f)
-        {
-            isDead = offPath.deadHead;
-            Die();
-        }
-    }
+    //public void TakeDamage(float amount)
+    //{
+    //    health -= amount;
+    //    if(health <= 0f)
+    //    {
+    //        isDead = offPath.deadHead;
+    //        Die();
+    //    }
+    //}
 
     void ChasePlayer()
     {
@@ -139,6 +173,7 @@ public class Enemy : MonoBehaviour
     }
     void Die()
     {
+        agent.enabled = false;
         animator.enabled = false;
         Destroy(gameObject, 5);
     }
