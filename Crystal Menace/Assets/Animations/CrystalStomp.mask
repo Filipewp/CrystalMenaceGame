@@ -13,121 +13,63 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Armature
     m_Weight: 1
-  - m_Path: Armature/Hip
+  - m_Path: Armature/HeelIK.L
     m_Weight: 1
-  - m_Path: Armature/Hip/Leg_L
+  - m_Path: Armature/HeelIK.L/Feet.L
     m_Weight: 1
-  - m_Path: Armature/Hip/Leg_L/Knee_L
+  - m_Path: Armature/HeelIK.L/Feet.L/Feet.L_end
     m_Weight: 1
-  - m_Path: Armature/Hip/Leg_L/Knee_L/Feet_L
+  - m_Path: Armature/HeelIK.R
     m_Weight: 1
-  - m_Path: Armature/Hip/Leg_L/Knee_L/Feet_L/Feet_L_end
+  - m_Path: Armature/HeelIK.R/Feet.R
     m_Weight: 1
-  - m_Path: Armature/Hip/Leg_R
+  - m_Path: Armature/HeelIK.R/Feet.R/Feet.R_end
     m_Weight: 1
-  - m_Path: Armature/Hip/Leg_R/Knee_R
+  - m_Path: Armature/Hip/Root
     m_Weight: 1
-  - m_Path: Armature/Hip/Leg_R/Knee_R/Feet_R
+  - m_Path: Armature/Hip/Root/Chest
     m_Weight: 1
-  - m_Path: Armature/Hip/Leg_R/Knee_R/Feet_R/Feet_R_end
+  - m_Path: Armature/Hip/Root/Chest/Arm.L
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso
+  - m_Path: Armature/Hip/Root/Chest/Arm.L/ForeArm.L
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L
+  - m_Path: Armature/Hip/Root/Chest/Arm.L/ForeArm.L/Hand.L
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L
+  - m_Path: Armature/Hip/Root/Chest/Arm.L/ForeArm.L/Hand.L/Hand.L_end
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L
+  - m_Path: Armature/Hip/Root/Chest/Arm.R
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L
+  - m_Path: Armature/Hip/Root/Chest/Arm.R/ForeArm.R
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Middle1_L
+  - m_Path: Armature/Hip/Root/Chest/Arm.R/ForeArm.R/Hand.R
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L
+  - m_Path: Armature/Hip/Root/Chest/Arm.R/ForeArm.R/Hand.R/Hand.R_end
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L/Middle3_L
+  - m_Path: Armature/Hip/Root/Chest/Neck
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L/Middle3_L/Middle3_L_end
+  - m_Path: Armature/Hip/Root/Chest/Neck/Head
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Pinky1_L
+  - m_Path: Armature/Hip/Root/Chest/Neck/Head/Head_end
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L
+  - m_Path: Armature/Hip/Root/Thigh.L
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L/Pinky3_L
+  - m_Path: Armature/Hip/Root/Thigh.L/Calve.L
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L/Pinky3_L/Pinky3_L_end
+  - m_Path: Armature/Hip/Root/Thigh.L/Calve.L/Calve.L_end
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Pointer1_L
+  - m_Path: Armature/Hip/Root/Thigh.R
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Pointer1_L/Pointer2_L
+  - m_Path: Armature/Hip/Root/Thigh.R/Calve.R
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Pointer1_L/Pointer2_L/Pointer3_L
+  - m_Path: Armature/Hip/Root/Thigh.R/Calve.R/Calve.R_end
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Pointer1_L/Pointer2_L/Pointer3_L/Pointer3_L_end
+  - m_Path: Armature/KneeIK.L
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Ring1_L
+  - m_Path: Armature/KneeIK.L/KneeIK.L_end
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L
+  - m_Path: Armature/KneeIK.R
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L/Ring3_L
+  - m_Path: Armature/KneeIK.R/KneeIK.R_end
     m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L/Ring3_L/Ring3_L_end
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Thumb1_L
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_L/Arm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L/Thumb2_L_end
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Middle1_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R/Middle3_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R/Middle3_R/Middle3_R_end
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Pinky1_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R/Pinky3_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R/Pinky3_R/Pinky3_R_end
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Pointer1_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Pointer1_R/Pointer2_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Pointer1_R/Pointer2_R/Pointer3_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Pointer1_R/Pointer2_R/Pointer3_R/Pointer3_R_end
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Ring1_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R/Ring3_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R/Ring3_R/Ring3_R_end
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Thumb1_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Clavicule_R/Arm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R/Thumb2_R_end
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Head
-    m_Weight: 1
-  - m_Path: Armature/Hip/Torso/Head/Head_end
-    m_Weight: 1
-  - m_Path: Cube
+  - m_Path: MercerMesh
     m_Weight: 1

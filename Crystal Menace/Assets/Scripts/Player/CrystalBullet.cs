@@ -87,7 +87,7 @@ public class CrystalBullet : MonoBehaviour
     }
     IEnumerator GoCrystal()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         crystal.SetActive(false);
         Instantiate(bulletCrystal, shootPoint.position, shootPoint.rotation);
         Shoot();

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class Player : MonoBehaviour
 {
     
@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     public HealthBar healthBar;
     public bool Mutation = false;
     public GameObject smash;
-    public float damage = 50;
+   
     public bool zoom = false;
     private int _stomp = 0;
     public GameObject shattered;
@@ -40,6 +40,13 @@ public class Player : MonoBehaviour
     public float power = 10.0f;
     public float radius = 5.0f;
     public float upForce = 1.0f;
+
+    public bool hasControl = true;
+
+   
+
+    private NavMeshAgent myNavmeshAgent;
+
     private void Awake()
     {
         singleton = this;
@@ -47,6 +54,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        this.GetComponent<Rigidbody>().sleepThreshold = 0.0f;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         _stomp = Animator.StringToHash("Stomp");
@@ -60,16 +68,21 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        input.x = Input.GetAxis("Horizontal");
-        input.y = Input.GetAxis("Vertical");
+       
+            input.x = Input.GetAxis("Horizontal");
+            input.y = Input.GetAxis("Vertical");
 
 
-        animator.SetFloat("InputX", input.x);
-        animator.SetFloat("InputY", input.y);
+            animator.SetFloat("InputX", input.x);
+            animator.SetFloat("InputY", input.y);
+        
 
     }
     void Update()
     {
+
+       
+
         if (Input.GetKey("m"))
         {
             SaveSystem.SavePlayer(this);
@@ -93,7 +106,7 @@ public class Player : MonoBehaviour
         {
             currentHealth = 0;
         }
-
+        
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
         {
 
@@ -107,11 +120,13 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float vertical = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
-       
+
         //ThirdPersonCam.SetActive( true);
         //AimCam.SetActive(false);
-
-        transform.Translate(horizontal, 0, vertical);
+       
+            transform.Translate(horizontal, 0, vertical);
+        
+        
 
         if (Input.GetMouseButton(1) && (Mutation == false))
         {
@@ -210,28 +225,71 @@ public class Player : MonoBehaviour
             Debug.Log("Player Is Dead");
         }
     }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    //if (other.tag == "Enemy")
+    //    //{
 
-            //Enemy enemy = other.transform.GetComponent<Enemy>();
-            //if (enemy != null)
-            //{
-            //    enemy.TakeDamage(damage);
-            //}
+    //    //    //Enemy enemy = other.transform.GetComponent<Enemy>();
+    //    //    //if (enemy != null)
+    //    //    //{
+    //    //    //    enemy.TakeDamage(damage);
+    //    //    //}
 
-            ShootingEnemy enemyShoot = other.transform.GetComponent<ShootingEnemy>();
-            if (enemyShoot != null)
-            {
-                enemyShoot.TakeDamage(damage);
-            }
+    //    //    ShootingEnemy enemyShoot = other.transform.GetComponent<ShootingEnemy>();
+    //    //    if (enemyShoot != null)
+    //    //    {
+    //    //        enemyShoot.TakeDamage(damage);
+    //    //    }
+
+           
+
+
+    //    //}
+
+    //    if (other.tag == "Door" && !hasDoorBeenTriggered)
+    //    {
+    //        // Stores a cached reference to the door that we are interacting with
+    //        doorInteractingWith = other.GetComponent<DoorController>();
+
+    //        // Sets a bool so that we know that the agent is already interacting with a door
+    //        hasDoorBeenTriggered = true;
+
+    //        // Takes user input control away
+    //        hasControl = false;
 
 
 
 
-        }
-    }
+
+    //        // Gets the length of the door open animation so we know how long to wait
+    //        doorOpenDelay = doorInteractingWith.animationDuration;
+
+
+    //        // Starts the coroutine that will carry out the sequence of waiting and opening the door
+    //        StartCoroutine(DelayCoroutine());
+    //    }
+    //}
+
+    //private IEnumerator DelayCoroutine()
+    //{
+
+       
+
+    //    // Play the door open animation
+    //    doorInteractingWith.OpenDoor();
+
+    //    // Wait for the door open animation to complete
+    //    yield return new WaitForSeconds(doorOpenDelay);
+
+       
+
+    //    doorOpenDelay = 0;
+    //    hasControl = true;
+       
+      
+    //}
+
 
     IEnumerator Die()
     {

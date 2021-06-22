@@ -99,9 +99,16 @@ public class GunSystem : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse1))
             {
-            if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+            if (allowButtonHold)
+            {
+                shooting = Input.GetKey(KeyCode.Mouse0);
+            }
             else shooting = Input.GetKeyDown(KeyCode.Mouse0);
         }
+
+        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+        else shooting = Input.GetKeyDown(KeyCode.Mouse0);
+
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
 
         //Shoot
@@ -126,6 +133,7 @@ public class GunSystem : MonoBehaviour
         //RayCast
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
+           
             Debug.Log(rayHit.collider.name);
 
             //Enemy enemy = rayHit.transform.GetComponent<Enemy>();

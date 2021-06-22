@@ -9,12 +9,12 @@ public class AimingChest : MonoBehaviour
 
 
     //void Update()
-    //{
-    //    chest.rotation = Cam.rotation ; 
-    //}
+    // {
+    //     chest.rotation = Cam.rotation;
+    // }
 
     void LateUpdate()
     {
-        chest.transform.LookAt(chest.transform.position - Cam.transform.forward);
+        chest.transform.LookAt(chest.transform.position + Cam.transform.forward);
     }
 }

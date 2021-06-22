@@ -31,4 +31,6 @@ public class CamZoom : MonoBehaviour
             Camera.main.fieldOfView = 60;
         }
     }
+
+   
 }

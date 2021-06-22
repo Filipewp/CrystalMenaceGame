@@ -67,6 +67,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: ZoomColl
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -119,7 +125,7 @@ AnimatorStateMachine:
     m_Position: {x: 430, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8412034928662989367}
-    m_Position: {x: 435.61432, y: 227.46115, z: 0}
+    m_Position: {x: 430, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6984381667976169923}
     m_Position: {x: 206.60962, y: 244.76479, z: 0}
