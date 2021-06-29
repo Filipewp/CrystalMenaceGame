@@ -13,7 +13,7 @@ public class ShootingEnemy : MonoBehaviour
     bool isDead = false;
     bool isDead1 = false;
     bool isDead2 = false;
-    bool isDead3 = false;
+    //bool isDead3 = false;
     bool isDead4 = false;
     bool isDead5 = false;
     bool totalDeath = false;
@@ -32,13 +32,14 @@ public class ShootingEnemy : MonoBehaviour
     public GameObject headShootDead;
     public GameObject torsoShootDead;
     public GameObject armLShootDead;
-    public GameObject armRShootDead;
+    //public GameObject armRShootDead;
     public GameObject legLShootDead;
     public GameObject legRShootDead;
+    public GameObject HipShootDead;
     private OnHeadShoot offPath;
     private OnHeadShoot offTorso;
     private OnHeadShoot offArmL;
-    private OnHeadShoot offArmR;
+    //private OnHeadShoot offArmR;
     private OnHeadShoot offLegL;
     private OnHeadShoot offLegR;
     public AudioSource shootSound;
@@ -51,7 +52,7 @@ public class ShootingEnemy : MonoBehaviour
         offPath = headShootDead.GetComponent<OnHeadShoot>();
         offTorso = torsoShootDead.GetComponent<OnHeadShoot>();
         offArmL = armLShootDead.GetComponent<OnHeadShoot>();
-        offArmR = armRShootDead.GetComponent<OnHeadShoot>();
+        //offArmR = armRShootDead.GetComponent<OnHeadShoot>();
         offLegL = legLShootDead.GetComponent<OnHeadShoot>();
         offLegR = legRShootDead.GetComponent<OnHeadShoot>();
        
@@ -62,62 +63,104 @@ public class ShootingEnemy : MonoBehaviour
         isDead = offPath.deadHead;
         isDead1 = offTorso.deadHead;
         isDead2 = offArmL.deadHead;
-        isDead3 = offArmR.deadHead;
+        //isDead3 = offArmR.deadHead;
         isDead4 = offLegL.deadHead;
         isDead5 = offLegR.deadHead;
         if (isDead == true && isDead2 == true)
         {
             totalDeath = true;
+            headShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            torsoShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            armLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legRShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            HipShootDead.GetComponent<Rigidbody>().isKinematic = false;
             Die();
         }
-        if (isDead == true && isDead3 == true)
-        {
-            totalDeath = true;
-            Die();
-        }
+        //if (isDead == true && isDead3 == true)
+        //{
+        //    totalDeath = true;
+        //    Die();
+        //}
         if (isDead == true && isDead4 == true)
         {
             totalDeath = true;
+            headShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            torsoShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            armLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legRShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            HipShootDead.GetComponent<Rigidbody>().isKinematic = false;
             Die();
         }
         if (isDead == true && isDead5 == true)
         {
             totalDeath = true;
+            headShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            torsoShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            armLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legRShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            HipShootDead.GetComponent<Rigidbody>().isKinematic = false;
             Die();
         }
         if (isDead1 == true)
         {
             totalDeath = true;
+            headShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            torsoShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            armLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legRShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            HipShootDead.GetComponent<Rigidbody>().isKinematic = false;
             Die();
         }
-        if (isDead2 == true && isDead3 == true)
-        {
-            totalDeath = true;
-            Die();
-        }
+        //if (isDead2 == true && isDead3 == true)
+        //{
+        //    totalDeath = true;
+        //    Die();
+        //}
         if (isDead2 == true && isDead4 == true)
         {
             totalDeath = true;
+            headShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            torsoShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            armLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legRShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            HipShootDead.GetComponent<Rigidbody>().isKinematic = false;
             Die();
         }
         if (isDead2 == true && isDead5 == true)
         {
             totalDeath = true;
+            headShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            torsoShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            armLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legRShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            HipShootDead.GetComponent<Rigidbody>().isKinematic = false;
             Die();
         }
-        if (isDead3 == true && isDead4 == true)
-        {
-            totalDeath = true;
-            Die();
-        }
-        if (isDead3 == true && isDead5 == true)
-        {
-            totalDeath = true;
-            Die();
-        }
+        //if (isDead3 == true && isDead4 == true)
+        //{
+        //    totalDeath = true;
+        //    Die();
+        //}
+        //if (isDead3 == true && isDead5 == true)
+        //{
+        //    totalDeath = true;
+        //    Die();
+        //}
         if (isDead4 == true && isDead5 == true)
         {
             totalDeath = true;
+            headShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            torsoShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            armLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legRShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            HipShootDead.GetComponent<Rigidbody>().isKinematic = false;
             Die();
         }
 

@@ -106,8 +106,7 @@ public class GunSystem : MonoBehaviour
             else shooting = Input.GetKeyDown(KeyCode.Mouse0);
         }
 
-        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
-        else shooting = Input.GetKeyDown(KeyCode.Mouse0);
+       
 
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
 
@@ -150,6 +149,13 @@ public class GunSystem : MonoBehaviour
             if (shootingenemy != null)
             {
                 shootingenemy.TakeDamage(damage);
+            }
+
+            Spider spider = rayHit.transform.GetComponent<Spider>();
+
+            if (spider != null)
+            {
+                spider.TakeDamage(damage);
             }
 
             OnHeadShoot headShoot = rayHit.transform.GetComponent<OnHeadShoot>();

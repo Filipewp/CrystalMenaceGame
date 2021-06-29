@@ -70,6 +70,13 @@ public class CrystalBullet : MonoBehaviour
                     enemyShoot.TakeDamage(CalculateDamage(hitting.collider.gameObject));
                 }
 
+                Spider spider = hitting.transform.GetComponent<Spider>();
+
+                if (spider != null)
+                {
+                    spider.TakeDamage(damage);
+                }
+
                 OnHeadShoot headShoot = hitting.transform.GetComponent<OnHeadShoot>();
 
                 if (headShoot != null)

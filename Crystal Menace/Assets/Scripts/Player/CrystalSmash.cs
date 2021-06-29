@@ -70,6 +70,13 @@ public class CrystalSmash : MonoBehaviour
                 headShoot.Vanish(damage);
             }
 
+            Spider spider = other.transform.GetComponent<Spider>();
+
+            if (spider != null)
+            {
+                spider.TakeDamage(damage);
+            }
+
 
         }
     }

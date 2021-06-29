@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Instructions.unity
     guid: 5c93bd501ce10fb459a7ed98ec2a2eb1
   - enabled: 1
-    path: Assets/Scenes/Lab1F.unity
+    path: Assets/Scenes/Reception.unity
     guid: 83207a63123720f4fbe5af22bbd48c18
   - enabled: 1
     path: Assets/Scenes/Continua.unity

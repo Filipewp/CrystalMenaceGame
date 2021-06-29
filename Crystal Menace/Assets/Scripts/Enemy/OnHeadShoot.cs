@@ -43,6 +43,7 @@ public class OnHeadShoot : MonoBehaviour
             GameObject clone = GameObject.Instantiate(replacement, positionHead.transform.position, positionHead.transform.rotation);
             coll.enabled = false;
             explosionSound.Play();
+           
             Detonate();
             Destroy(partToVanish);
             deadHead = true;
