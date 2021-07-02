@@ -29,6 +29,11 @@ public class Spider : MonoBehaviour
 
     bool isDead = false;
 
+    public GameObject orbs;
+
+    float m_dropChance = 0.25f;
+    bool orbSpawn = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -107,8 +112,18 @@ public class Spider : MonoBehaviour
         Destroy(partToVanish);
         agent.enabled = false;
         animator.enabled = false;
+        OnEnemyJustDied();
         Destroy(gameObject, 5);
         Destroy(clone, 5);
+    }
+
+    public void OnEnemyJustDied()
+    {
+        if (Random.Range(0f, 1f) <= m_dropChance && orbSpawn == false)
+        {
+            Instantiate(orbs, transform.position, Quaternion.identity);
+            orbSpawn = true;
+        }
     }
 
     void Detonate()

@@ -20,6 +20,8 @@ public class CrystalBullet : MonoBehaviour
     private float nextFireTime = 0;
     public AudioSource BulletSound;
 
+    public bool evolution1 = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -29,7 +31,7 @@ public class CrystalBullet : MonoBehaviour
     {
         if (Time.time > nextFireTime)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && evolution1 == true)
             {
                 crystal.SetActive(true);
                 StartCoroutine(GoCrystal());

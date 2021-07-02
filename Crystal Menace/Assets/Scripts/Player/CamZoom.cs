@@ -12,7 +12,7 @@ public class CamZoom : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-       
+
     }
 
     // Update is called once per frame
@@ -32,5 +32,13 @@ public class CamZoom : MonoBehaviour
         }
     }
 
-   
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Wall")
+        {
+            zoom = true;
+            animator.SetBool("Zoom", zoom);
+            Camera.main.fieldOfView = 35;
+        }
+    }
 }

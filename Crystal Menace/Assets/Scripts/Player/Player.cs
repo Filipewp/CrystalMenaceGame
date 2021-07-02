@@ -43,7 +43,23 @@ public class Player : MonoBehaviour
 
     public bool hasControl = true;
 
+    public Material Material1;
+    public Material Material2;
+
+    public GameObject Object;
+    public GameObject Object1;
+    public GameObject Object2;
+    public GameObject Object3;
+
+    public bool mutation1 = false;
+    public bool mutation2 = false;
+
+    public bool Gun1 = false;
+    public bool Gun2 = false;
+    public bool Gun3 = false;
+
    
+
 
     private NavMeshAgent myNavmeshAgent;
 
@@ -80,8 +96,24 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        //currentHealth++10;
 
-       
+        if (mutation1==true)
+        {
+            Object.GetComponent<SkinnedMeshRenderer>().material = Material1;
+            Object1.GetComponent<SkinnedMeshRenderer>().material = Material2;
+            Object2.GetComponent<SkinnedMeshRenderer>().material = Material2;
+            Object3.GetComponent<SkinnedMeshRenderer>().material = Material2;
+
+        }
+        if (Input.GetKey(KeyCode.LeftShift)&& !Input.GetKey(KeyCode.Mouse1))
+        {
+            speed = 20;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speed = 15;
+        }
 
         if (Input.GetKey("m"))
         {
@@ -121,8 +153,8 @@ public class Player : MonoBehaviour
         float vertical = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
 
-        //ThirdPersonCam.SetActive( true);
-        //AimCam.SetActive(false);
+        ThirdPersonCam.SetActive( true);
+        AimCam.SetActive(false);
        
             transform.Translate(horizontal, 0, vertical);
         
@@ -132,8 +164,8 @@ public class Player : MonoBehaviour
         {
             animator.Play("AimLocomotion");
            
-           // ThirdPersonCam.SetActive(false);
-            //AimCam.SetActive(true);
+           ThirdPersonCam.SetActive(false);
+           AimCam.SetActive(true);
         }
         else if (Mutation == false )
         {
@@ -145,8 +177,8 @@ public class Player : MonoBehaviour
         {
             animator.Play("SymbAimLocomotion");
            
-            //ThirdPersonCam.SetActive(false);
-            //AimCam.SetActive(true);
+            ThirdPersonCam.SetActive(false);
+            AimCam.SetActive(true);
         }
         else if (Mutation == true )
         {
@@ -154,24 +186,24 @@ public class Player : MonoBehaviour
             //Camanimator.Play("CamZoomOut");
         }
 
-        if (Input.GetButtonDown("Jump"))
-        {
+        //if (Input.GetButtonDown("Jump"))
+        //{
 
-            rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
-            OnGround = false;
-        }
+        //    rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+        //    OnGround = false;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.E) && (Mutation == true) && (isDead = false))
-        {
+        //if (Input.GetKeyDown(KeyCode.E) && (Mutation == true) && (isDead = false))
+        //{
            
-            smash.SetActive(true);
-            StartCoroutine(Die());
-            animator.SetTrigger(_stomp);
+        //    smash.SetActive(true);
+        //    StartCoroutine(Die());
+        //    animator.SetTrigger(_stomp);
            
 
-        }
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && change1 == true)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Gun1 == true)
         {
 
             Weapon1.SetActive(true);
@@ -179,7 +211,7 @@ public class Player : MonoBehaviour
             Weapon3.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && change2 == true)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && Gun2 == true)
         {
 
             Weapon1.SetActive(false);
@@ -187,7 +219,7 @@ public class Player : MonoBehaviour
             Weapon3.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3) && change3 == true)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && Gun3 == true)
         {
 
             Weapon1.SetActive(false);
@@ -197,7 +229,15 @@ public class Player : MonoBehaviour
 
 
     }
-    public void DamagePlayer(float damage)
+    public void HealPlayer(float healamount)
+    {
+        if (currentHealth > 0 && currentHealth < 100) 
+        {
+            currentHealth += healamount;
+            healthBar.SetHealth(currentHealth);
+        }
+    }
+        public void DamagePlayer(float damage)
     {
         if (currentHealth > 0)
         {

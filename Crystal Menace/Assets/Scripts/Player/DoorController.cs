@@ -104,7 +104,7 @@ public class DoorController : MonoBehaviour
             if (locked == false)
             {
 
-                Debug.Log("hit");
+              
 
                 OpenDoor();
                 //StartCoroutine(DelayCoroutine());
@@ -117,7 +117,7 @@ public class DoorController : MonoBehaviour
             if (locked == false)
             {
 
-                Debug.Log("hit");
+                
 
                 OpenDoor();
                 //StartCoroutine(DelayCoroutine());

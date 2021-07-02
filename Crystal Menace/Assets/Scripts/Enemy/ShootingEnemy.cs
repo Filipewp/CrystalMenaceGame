@@ -19,7 +19,7 @@ public class ShootingEnemy : MonoBehaviour
     bool totalDeath = false;
     public bool canAttack = true;
     [SerializeField]
-    float chaseDistance = 2f;
+    float chaseDistance = 25f;
     public Animator animator;
     [SerializeField]
     Transform shootPoint;
@@ -27,7 +27,7 @@ public class ShootingEnemy : MonoBehaviour
     [SerializeField]
     float turnSpeed = 5;
 
-    float fireRate = 0.5f;
+    float fireRate = 1f;
 
     public GameObject headShootDead;
     public GameObject torsoShootDead;
@@ -43,6 +43,11 @@ public class ShootingEnemy : MonoBehaviour
     private OnHeadShoot offLegL;
     private OnHeadShoot offLegR;
     public AudioSource shootSound;
+
+    public GameObject orbs;
+
+    float m_dropChance = 0.25f;
+    bool orbSpawn = false;
 
     void Start()
     {
@@ -105,6 +110,17 @@ public class ShootingEnemy : MonoBehaviour
             Die();
         }
         if (isDead1 == true)
+        {
+            totalDeath = true;
+            headShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            torsoShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            armLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legLShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            legRShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            HipShootDead.GetComponent<Rigidbody>().isKinematic = false;
+            Die();
+        }
+        if (isDead2 == true)
         {
             totalDeath = true;
             headShootDead.GetComponent<Rigidbody>().isKinematic = false;
@@ -213,7 +229,7 @@ public class ShootingEnemy : MonoBehaviour
                 
         if (fireRate <= 0)
         {
-            fireRate = 0.6f;
+            fireRate = 1f;
             Shoot();
         }
     }
@@ -234,7 +250,16 @@ public class ShootingEnemy : MonoBehaviour
         
         agent.enabled = false;
         animator.enabled = false;
-        
+        OnEnemyJustDied();
         Destroy(gameObject, 5);
+    }
+
+    public void OnEnemyJustDied()
+    {
+        if (Random.Range(0f, 1f) <= m_dropChance && orbSpawn == false)
+        {
+            Instantiate(orbs, transform.position, Quaternion.identity);
+            orbSpawn = true;
+        }
     }
 }

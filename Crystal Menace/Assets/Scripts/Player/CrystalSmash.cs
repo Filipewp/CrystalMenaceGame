@@ -18,6 +18,8 @@ public class CrystalSmash : MonoBehaviour
     public float cooldownTime = 2;
     private float nextFireTime = 0;
 
+    public bool evolution2 = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -29,7 +31,7 @@ public class CrystalSmash : MonoBehaviour
     {
         if (Time.time > nextFireTime)
         {
-            if (Input.GetKeyDown(KeyCode.E) && (Mutation == true))
+            if (Input.GetKeyDown(KeyCode.Space) && (evolution2 == true))
             {
                 stomp = true;
                 smash.SetActive(true);

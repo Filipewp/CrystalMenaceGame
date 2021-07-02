@@ -8,7 +8,8 @@ public class Interaction : MonoBehaviour
     public GameObject ToDie;
     public GameObject ToDie2;
     public GameObject[] Spawns;
-   
+    public GameObject CanvasE;
+
 
 
 
@@ -28,7 +29,8 @@ public class Interaction : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            CanvasE.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
             {
 
                 ToActivate.SendMessage("Activate");
@@ -38,10 +40,18 @@ public class Interaction : MonoBehaviour
                 {
                     Spawns[i].SetActive(true);
                 }
-               
+
             }
 
 
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            CanvasE.SetActive(false);
         }
     }
 }

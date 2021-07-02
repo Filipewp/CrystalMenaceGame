@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public float health = 50f;
     Transform target;
+    
     NavMeshAgent agent;
     bool isDead = false;
     bool isDead1 = false;
@@ -38,7 +39,10 @@ public class Enemy : MonoBehaviour
     private OnHeadShoot offLegL;
     private OnHeadShoot offLegR;
 
+    public GameObject orbs;
    
+    float m_dropChance = 0.25f;
+    bool orbSpawn = false;
 
     void Start()
     {
@@ -175,9 +179,20 @@ public class Enemy : MonoBehaviour
     }
     void Die()
     {
-        
+       
         agent.enabled = false;
         animator.enabled = false;
+        OnEnemyJustDied();
+
+
         Destroy(gameObject, 5);
+    }
+    public void OnEnemyJustDied()
+    {
+        if (Random.Range(0f, 1f) <= m_dropChance && orbSpawn == false)
+        {
+            Instantiate(orbs, transform.position, Quaternion.identity);
+            orbSpawn = true;
+        }
     }
 }

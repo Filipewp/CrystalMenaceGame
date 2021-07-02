@@ -23,7 +23,7 @@ public class DoorInteraction : MonoBehaviour
 
     void Activate()
     {
-        Debug.Log("Click");
+       
         Door.GetComponent<DoorController>().locked = false;
         Door2.GetComponent<DoorController>().locked = false;
         if (generator == true)

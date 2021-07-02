@@ -67,6 +67,10 @@ public class GunSystem : MonoBehaviour
     int bulletsLeft, bulletsShot;
     public AudioSource shootSound;
     public AudioSource reloadSound;
+    [SerializeField]
+    GameObject projectile = null;
+    [SerializeField]
+    Transform shootPoint;
 
     //bools 
     bool shooting, readyToShoot, reloading;
@@ -83,8 +87,11 @@ public class GunSystem : MonoBehaviour
     public float camShakeMagnitude, camShakeDuration;
     public TextMeshProUGUI text;
 
+    public Player speedAim;
+
     private void Awake()
     {
+        
         bulletsLeft = magazineSize;
         readyToShoot = true;
     }
@@ -98,12 +105,21 @@ public class GunSystem : MonoBehaviour
     private void MyInput()
     {
         if (Input.GetKey(KeyCode.Mouse1))
-            {
+        { 
+            speedAim.GetComponent<Player>().speed = 5;
+        
             if (allowButtonHold)
             {
                 shooting = Input.GetKey(KeyCode.Mouse0);
+                if(bulletsLeft == 0 && !reloading) Reload();
             }
             else shooting = Input.GetKeyDown(KeyCode.Mouse0);
+            if(bulletsLeft == 0 && !reloading) Reload();
+
+        }
+        else 
+        {
+            speedAim.GetComponent<Player>().speed = 15;
         }
 
        
@@ -132,8 +148,8 @@ public class GunSystem : MonoBehaviour
         //RayCast
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
+            Instantiate(projectile, shootPoint.position, shootPoint.rotation);
            
-            Debug.Log(rayHit.collider.name);
 
             //Enemy enemy = rayHit.transform.GetComponent<Enemy>();
 

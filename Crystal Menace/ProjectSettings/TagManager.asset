@@ -8,6 +8,8 @@ TagManager:
   - Door
   - Interaction
   - Wall
+  - Life
+  - Orbs
   layers:
   - Default
   - TransparentFX

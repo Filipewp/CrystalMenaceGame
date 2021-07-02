@@ -12,12 +12,24 @@ public class TimedSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
+        if (stopSpawning == false)
+        {
+            InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
+        }
     }
-
-   public void SpawnObject()
+    void Update()
     {
-        Instantiate(enemy, transform.position, transform.rotation);
+        //if (stopSpawning == false)
+        //{
+        //    InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
+        //}
+    }
+    public void SpawnObject()
+    {
+        if (stopSpawning==false)
+        {
+            Instantiate(enemy, transform.position, transform.rotation);
+        }
         if(stopSpawning)
         {
             CancelInvoke("SpawnObject");

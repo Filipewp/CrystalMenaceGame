@@ -9,11 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: aaa073b14267f4e4fbd471cf9b8f3a12
   - enabled: 1
-    path: Assets/Scenes/Instructions.unity
-    guid: 5c93bd501ce10fb459a7ed98ec2a2eb1
+    path: Assets/Scenes/Intro.unity
+    guid: f4ce22f32446ef047b9420eb8d7a8f30
   - enabled: 1
     path: Assets/Scenes/Reception.unity
     guid: 83207a63123720f4fbe5af22bbd48c18
+  - enabled: 1
+    path: Assets/Scenes/Lab.unity
+    guid: 43a61e1fc6efa854f9aa4af5316ed668
+  - enabled: 1
+    path: Assets/Scenes/Assembly.unity
+    guid: d34b496af637cd74cb8068fad6af9dd7
   - enabled: 1
     path: Assets/Scenes/Continua.unity
     guid: bdf58fbd7e58f4d45bd2dc18d2799c43

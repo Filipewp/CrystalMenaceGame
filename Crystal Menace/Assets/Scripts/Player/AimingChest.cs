@@ -6,6 +6,7 @@ public class AimingChest : MonoBehaviour
 {
     public Transform chest;
     public Transform Cam;
+ 
 
 
     //void Update()
@@ -16,5 +17,6 @@ public class AimingChest : MonoBehaviour
     void LateUpdate()
     {
         chest.transform.LookAt(chest.transform.position + Cam.transform.forward);
+     
     }
 }

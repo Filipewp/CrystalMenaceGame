@@ -10,6 +10,10 @@ public class WeaponTransform : MonoBehaviour
     public bool ShotGun = true;
     public bool MachineGun = true;
 
+    public bool HandGun1 = false;
+    public bool ShotGun2 = false;
+    public bool MachineGun3 = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,36 +23,36 @@ public class WeaponTransform : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && HandGun == true)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && HandGun == true && HandGun1 == true) 
         {
 
             InvokeRepeating("Scale", 0.0f, 0.01f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && ShotGun == true)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && ShotGun == true && ShotGun2 == true)
         {
 
             InvokeRepeating("Scale", 0.0f, 0.01f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3) && MachineGun == true)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && MachineGun == true && MachineGun3 == true)
         {
 
             InvokeRepeating("Scale", 0.0f, 0.01f);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1) && HandGun == false)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && HandGun == false && HandGun1 == true)
         {
 
             InvokeRepeating("ReverseScale", 0.0f, 0.01f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && ShotGun == false)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && ShotGun == false && ShotGun2 == true)
         {
 
             InvokeRepeating("ReverseScale", 0.0f, 0.01f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3) && MachineGun == false)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && MachineGun == false && MachineGun3 == true)
         {
 
             InvokeRepeating("ReverseScale", 0.0f, 0.01f);
